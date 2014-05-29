@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- saved from url=(0067)file:///C:/Users/Domhnall/appdata/local/temp/62.html#traffic-lights -->
+<!-- saved from url=(0052)file:///C:/Users/Domhnall/appdata/local/temp/37.html -->
 <html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8"><style>body
 {
   font-size:15px;
@@ -751,7 +751,7 @@ body .task-list{
   color:#A31515
 }
 </style><title>home</title></head><body><h1>
-<a name="user-content-wwwtherobotfoundrynet" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/62.html#wwwtherobotfoundrynet"><span class="octicon octicon-link"></span></a><a href="http://www.therobotfoundry.net/">www.theRobotFoundry.net</a>
+<a name="user-content-wwwtherobotfoundrynet" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/37.html#wwwtherobotfoundrynet"><span class="octicon octicon-link"></span></a><a href="http://www.therobotfoundry.net/">www.theRobotFoundry.net</a>
 </h1>
 
 <p><a href="./index_files/poster.png" target="_blank"><img src="./index_files/poster.png" alt="Poster for Arduino Courses" style="max-width:100%;"></a><br>
@@ -759,7 +759,7 @@ If you're interested in attending one of our courses just send us an email:
 <a href="file:///C:/Users/Domhnall/Documents/GitHub/therobotfoundry.github.io/mailto:therobotfoundry@gmail.com">therobotfoundry@gmail.com</a>  </p>
 
 <h3>
-<a name="user-content-sketches" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/62.html#sketches"><span class="octicon octicon-link"></span></a>Sketches</h3>
+<a name="user-content-sketches" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/37.html#sketches"><span class="octicon octicon-link"></span></a>Sketches</h3>
 
 <p>Here's a collection of some of the sketches that we've worked on so far. This list will grow as the weeks progress.</p>
 
@@ -768,16 +768,20 @@ If you're interested in attending one of our courses just send us an email:
 <a href="#blink">Blink</a><br>
 </li>
 <li>
+<a href="#sms">SMS Morse Code</a><br>
+</li>
+
+<li>
 <a href="#traffic-lights">Traffic Lights</a><br>
 </li>
 </ul><h3>
-<a name="user-content--blink" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/62.html#-blink"><span class="octicon octicon-link"></span></a>
-<a name="#blink"></a> Blink</h3>
+<a name="user-content--blink" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/37.html#-blink"><span class="octicon octicon-link"></span></a>
+<a name="blink"></a> Blink</h3>
 
-<p>This is, traditionally, the very first sketch that people write. All it does is turn the light (LED) on and off. The &gt;delay() function determines how frequently the LED turns on and off. Time is measures in miliseconds.</p>
+<p>This is, traditionally, the very first sketch that people write. All it does is turn the light (LED) on and off. Every Arduino sketch must have a <code>setup()</code> block and a <code>loop()</code> block. In the setup block all the pins you want to use in your circuit are setup, or initialised, to be either <strong>INPUT</strong> or <strong>OUTPUT</strong> pins. This is done using the <code>pinMode()</code> function. Please note that Arduino programming is case sensitive, so INPUT, Input, and input are all different things. To turn the LED on or off the <code>digitalWrite()</code> function is used. It takes two pieces of information, also known as parameters or arguments for the function. It needs to know what pin to work with and whether to turn it on or off.Finally,  the <code>delay()</code> function determines how long to wait before executing the next line of code &amp; time is measured in miliseconds.</p>
 
 <div class="highlight highlight-C"><pre><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>                
-  <span class="c1">// initialize pin 13 as an output.</span>
+  <span class="c1">// initialise pin 13 as an output.</span>
   <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>     
 <span class="p">}</span>
 
@@ -788,7 +792,7 @@ If you're interested in attending one of our courses just send us an email:
   <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>              <span class="c1">// wait for a second</span>
 <span class="p">}</span>
 </pre></div>
-
+<a name="sms"></a>
 <p>This is a very simple MWE (minimum working example) which allows us to check that our code will compile and succesfully upload to our Arduino. However, it's not very robust and doesn't cope particulaly well with changes to the circuit. The SMS code below works better.</p>
 
 <div class="highlight highlight-C"><pre><span class="cm">/*</span>
@@ -853,10 +857,10 @@ If you're interested in attending one of our courses just send us an email:
 </pre></div>
 
 <h3>
-<a name="user-content--traffic-lights" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/62.html#-traffic-lights"><span class="octicon octicon-link"></span></a>
+<a name="user-content--traffic-lights" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/37.html#-traffic-lights"><span class="octicon octicon-link"></span></a>
 <a name="traffic-lights"></a> Traffic Lights</h3>
 
 <h3>
-<a name="user-content-thanks" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/62.html#thanks"><span class="octicon octicon-link"></span></a>Thanks!</h3>
+<a name="user-content-thanks" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/37.html#thanks"><span class="octicon octicon-link"></span></a>Thanks!</h3>
 
 <p>This page is made possible thanks to <a href="https://pages.github.com/">Github Pages</a> <img class="emoji" title=":octocat:" alt=":octocat:" src="./index_files/octocat.png" height="20" width="20" align="absmiddle"></p><script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script><script src="./index_files/livereload.js"></script></body></html>

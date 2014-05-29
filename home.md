@@ -10,10 +10,10 @@ Here's a collection of some of the sketches that we've worked on so far. This li
 - [Traffic Lights](#traffic-lights)  
 
 ### <a name="blink"></a> Blink
-This is, traditionally, the very first sketch that people write. All it does is turn the light (LED) on and off. The >delay() function determines how frequently the LED turns on and off. Time is measures in miliseconds.
+This is, traditionally, the very first sketch that people write. All it does is turn the light (LED) on and off. Every Arduino sketch must have a `setup()` block and a `loop()` block. In the setup block all the pins you want to use in your circuit are setup, or initialised, to be either **INPUT** or **OUTPUT** pins. This is done using the `pinMode()` function. Please note that Arduino programming is case sensitive, so INPUT, Input, and input are all different things. To turn the LED on or off the `digitalWrite()` function is used. It takes two pieces of information, also known as parameters or arguments for the function. It needs to know what pin to work with and whether to turn it on or off.Finally,  the `delay()` function determines how long to wait before executing the next line of code & time is measured in miliseconds.
 ```C
 void setup() {                
-  // initialize pin 13 as an output.
+  // initialise pin 13 as an output.
   pinMode(13, OUTPUT);     
 }
 
