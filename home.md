@@ -7,7 +7,11 @@ therobotfoundry@gmail.com
 Here's a collection of some of the sketches that we've worked on so far. This list will grow as the weeks progress.
 
 - [Blink](#blink)  
+-     [Loops](#loops)   
 - [Traffic Lights](#traffic-lights)  
+-     [Arrays](#arrays)  
+- [Light Dependent Resistor](#ldr)  
+-     [If Statements](#ifs)  
 
 ## <a name="blink"></a> Blink
 This is, traditionally, the very first sketch that people write. All it does is turn the light (LED) on and off. Every Arduino sketch must have a `setup()` block and a `loop()` block. In the setup block all the pins you want to use in your circuit are setup, or initialised, to be either **INPUT** or **OUTPUT** pins. This is done using the `pinMode()` function. Please note that Arduino programming is case sensitive, so INPUT, Input, and input are all different things. To turn the LED on or off the `digitalWrite()` function is used. It takes two pieces of information, also known as parameters or arguments for the function. It needs to know what pin to work with and whether to turn it on or off.Finally,  the `delay()` function determines how long to wait before executing the next line of code & time is measured in miliseconds.
@@ -27,9 +31,7 @@ void loop() {
 
 This is a very simple MWE (minimum working example) which allows us to check that our code will compile and succesfully upload to our Arduino. However, it's not very robust and doesn't cope particulaly well with changes to the circuit. The SMS code below works better.
 
-<form method="get" action="http://goo.gl/y57Jty">
-<button type="submit">Download This Sketch</button>
-</form>
+
 
 ```C
 /*
@@ -92,7 +94,7 @@ void loop(){
 }
 
 ```
-
+<a name="loops"></a>
 ###Loops
 Generally when coding you want to be as concise as possible. If there are any patterns or repitition in the code, like in the SMS example above, you can usually make it shorter. In the coming weeks we'll look at using functions to do this for us, but for now we will reduce our code using a `for()` loop.
 In order to create a `for()` loop you need to know four things. 
@@ -191,6 +193,7 @@ void loop(){
 
 ```
 
+<a name="arrays"></a>
 ###Using Arrays
 
 ```C
@@ -231,7 +234,119 @@ void loop(){
     }                              //4. until the loop as gone through all the LEDs it will go back to the beginning and do the same for the i+1th element.
 }                                  //5. Once it finishes with the for() loop it goes back to the start of loop(), hence the slightly longer delay in going from green back to red.
 
+```  
+
+<a name="serial-monitor"></a>
+###Serial Monitor
+
+If we want to read or write information with the computer we can use the serial monitor. In order make use of this functionality we must add the `Serial.begin(9600);` function to the setup block of code. This tells the Arduino to use the serial monitor, with a baud rate of 9600. Once we have done this we can use a wide range of functions, such as `Serial.read()` and `Serial.write()` throughout our code. In the following example we allow the user to select which light to activate, based on thier keyboard input.
+
+```C
+/*
+Traffic light code where the user selects which LED to illuminate based on key press
+
+Code by Domhnall O'Hanlon. 2014.
+
+*/
+
+//giving the pins more suitable names
+//this will make the code easier to read, 
+//and changes faster to carry out
+int GreenLED = 11;  //pin 1 = TX
+int YellowLED = 10; //pin 0 = RX
+int RedLED = 9;
+
+//same idea with as with the pins
+//changing the delay requires making one change rather than 3!
+int multiplier = 100;
+int interval = 2;
+int delayAmount = interval * multiplier;
+
+int keyPressed = 0;
+int numBlinks = 3;
+
+void setup(){
+ Serial.begin(9600); 
+  
+ pinMode(GreenLED, OUTPUT);
+ pinMode(YellowLED, OUTPUT);
+ pinMode(RedLED, OUTPUT);
+
+Serial.println("Please press \'r\' for Red, \'y\' for Yellow or \'g\' for Green."); 
+
+}
+
+
+void loop(){
+  //only executes this code if something is sent from the serial monitor
+  if(Serial.available() >0){
+    
+    //sets the keyPressed var to whatever the user has typed on their keyboard
+    keyPressed = Serial.read(); 
+    
+    //checks for either lower or upper case and sets the lights accordingly.
+    // || is used to denote the boolean operator, 'OR'
+    // && is used for the 'AND' operator
+    // single quites are used for chars and double quotes are used for Strings
+    // NB: == denotes equivalence and = is used for assignment.
+    if(keyPressed =='r' || keyPressed == 'R'){
+     Serial.write(keyPressed); 
+     digitalWrite(RedLED, HIGH);
+     digitalWrite(YellowLED, LOW);
+     digitalWrite(GreenLED,LOW);
+    }
+    
+    else if(keyPressed =='y'||keyPressed == 'Y'){
+     Serial.write(keyPressed); 
+     digitalWrite(RedLED, LOW);
+     digitalWrite(YellowLED, HIGH);
+     digitalWrite(GreenLED,LOW);
+    }
+    
+    else if(keyPressed =='g' || keyPressed == 'G'){
+     Serial.write(keyPressed); 
+     digitalWrite(RedLED, LOW);
+     digitalWrite(YellowLED, LOW);
+     digitalWrite(GreenLED, HIGH);
+    }
+    
+    /*
+    Again, not strictly necessary here, but it's always good practice use an else block to 
+    look after all the other eventualities.
+    In this piece of code ALL the LEDs blink repeatedly if an invalid key is pressed.
+    numBlinks and delayAmount are global variables, defined at the very beginning of the code
+    */
+    else{
+     int i=1;
+     while (i<=numBlinks){
+       digitalWrite(RedLED, HIGH);
+       digitalWrite(YellowLED, HIGH);     
+       digitalWrite(GreenLED,HIGH); 
+       delay(delayAmount);
+       digitalWrite(RedLED, LOW);
+       digitalWrite(YellowLED, LOW);     
+       digitalWrite(GreenLED,LOW);
+       delay(delayAmount);
+       //Serial.print(i); //I was using this while debugging.
+   
+       i++;
+     }
+         Serial.write(keyPressed);
+    }
+  }
+
+}
+
 ```
 
-###Thanks!
+<a name="ldr"></a>
+##Light Dependent Resistor
+![LDR Circuit](ldr.png "Reading in LDR values to Analog Pin 0")
+
+<a name="ifs"></a>
+###If Statements
+Putting the LDR input values and the LED outputs together we can now get the lights to turn on or off based on the ambient light levels in the room.
+
+
+##Thanks!
 This page is made possible thanks to [Github Pages](https://pages.github.com) :octocat:
