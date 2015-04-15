@@ -1,0 +1,26 @@
+# Site settings
+title: Building Robots Developing People.
+email: info@therobotfoundry.net
+url: https://therobotfoundry.github.io
+description: "We specialise in taking technical subjects and making them accessible to anyone. "
+
+# Color settings (hex-codes without the leading hash-tag)
+color:
+  primary-dark: '#000000'
+  links: '#219ab3'
+
+# Footer settings
+footer: http://therobotfoundry.net
+
+# Social networks usernames (many more available: google-plus, flickr, dribbble, pinterest, instagram, tumblr, linkedin, bitbusket, stack-overflow etc.)
+social:
+  - title: twitter
+    url: https://twitter.com/therobotfoundry
+  - title: facebook
+    url: http://facebook.com/therobotfoundry
+  - title: github
+    url: https://github.com/therobotfoundry
+
+# Build settings
+markdown: kramdown
+permalink: pretty

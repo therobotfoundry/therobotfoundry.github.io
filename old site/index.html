@@ -1,0 +1,426 @@
+<!DOCTYPE html>
+<!-- saved from url=(0056)file:///C:/Users/Domhnall/appdata/local/temp/78.html#ifs -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><meta charset="utf-8">
+
+<link rel="stylesheet" href="styles.css">
+
+<title>home</title>
+</head>
+
+<body>
+<!--
+<h1>
+<a name="user-content-wwwtherobotfoundrynet" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/78.html#wwwtherobotfoundrynet"><span class="octicon octicon-link"></span></a><a href="http://www.therobotfoundry.net/">www.theRobotFoundry.net</a>
+</h1>
+-->
+<p><a href="home" target="_blank"><img src="./index_files/banner.jpg" alt="Poster for Arduino Courses" style="max-width:100%;"></a>
+  <br>
+
+<ul class="navbar">
+ <li class="navbar"><a href="#home" class="navbar">Home</a></li> 
+<li class="navbar"><a href="#blink" class="navbar">Blink</a></li>
+<li class="navbar"><a href="#loops" class="navbar">Loops</a></li>
+<li class="navbar"><a href="#traffic-lights" class="navbar">Traffic Lights</a></li>
+<li class="navbar"><a href="#arrays" class="navbar">Arrays</a></li>
+<li class="navbar"><a href="#ldr" class="navbar">LDRs</a></li>
+<li class="navbar"><a href="#ifs" class="navbar">Ifs</a></li>
+</ul>
+<br>
+If you're interested in attending one of our courses just send us an email:
+<a href="file:///C:/Users/Domhnall/Documents/GitHub/therobotfoundry.github.io/mailto:therobotfoundry@gmail.com">therobotfoundry@gmail.com</a>  </p>
+
+<h3>
+<a name="user-content-sketches" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/78.html#sketches"><span class="octicon octicon-link"></span></a>Sketches</h3>
+
+<p>Here's a collection of some of the sketches that we've worked on so far. This list will grow as the weeks progress.</p>
+
+<ul>
+<li>
+<a href="#blink">Blink</a><br>
+</li>
+<li>    <a href="#loops">Loops</a><br>
+</li>
+<li>
+<a href="#traffic-lights">Traffic Lights</a><br>
+</li>
+<li>    <a href="#arrays">Arrays</a><br>
+</li>
+<li>
+<a href="#ldr">Light Dependent Resistor</a><br>
+</li>
+<li>    <a href="#ifs">If Statements</a><br>
+</li>
+</ul><h2>
+<a name="user-content--blink" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/78.html#-blink"><span class="octicon octicon-link"></span></a>
+<a name="blink"></a> Blink</h2>
+
+<p>This is, traditionally, the very first sketch that people write. All it does is turn the light (LED) on and off. Every Arduino sketch must have a <code>setup()</code> block and a <code>loop()</code> block. In the setup block all the pins you want to use in your circuit are setup, or initialised, to be either <strong>INPUT</strong> or <strong>OUTPUT</strong> pins. This is done using the <code>pinMode()</code> function. Please note that Arduino programming is case sensitive, so INPUT, Input, and input are all different things. To turn the LED on or off the <code>digitalWrite()</code> function is used. It takes two pieces of information, also known as parameters or arguments for the function. It needs to know what pin to work with and whether to turn it on or off.Finally,  the <code>delay()</code> function determines how long to wait before executing the next line of code &amp; time is measured in miliseconds.</p>
+
+<div class="highlight highlight-C"><pre><span class="kt">void</span> <span class="nf">setup</span><span class="p">()</span> <span class="p">{</span>                
+  <span class="c1">// initialise pin 13 as an output.</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>     
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">()</span> <span class="p">{</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>   <span class="c1">// set the LED on</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>              <span class="c1">// wait for a second</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>    <span class="c1">// set the LED off</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>              <span class="c1">// wait for a second</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>This is a very simple MWE (minimum working example) which allows us to check that our code will compile and succesfully upload to our Arduino. However, it's not very robust and doesn't cope particulaly well with changes to the circuit. The SMS code below works better.</p>
+
+<!--SMS Basic -->
+<form method="get" action="http://goo.gl/y57Jty">
+  <button type="submit">Download This Sketch</button>
+</form>
+<div class="highlight highlight-C"><pre><span class="cm">/*</span>
+<span class="cm">In this code we name the output pin "LED" and give it a value of pin 9.  </span>
+<span class="cm">Our code now references a general pin name rather then a specific pin number.  </span>
+<span class="cm">This means that if we need to change from pin 9 to any other pin we only have  </span>
+<span class="cm">to make one change, and we can do this without the risk of breaking the rest  of our code.</span>
+<span class="cm">*/</span>
+
+<span class="kt">int</span> <span class="n">LED</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>            
+<span class="kt">int</span> <span class="n">shortDelay</span> <span class="o">=</span> <span class="mi">200</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">longDelay</span> <span class="o">=</span> <span class="mi">500</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
+  <span class="n">pinMode</span><span class="p">(</span><span class="mi">13</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(){</span>
+
+<span class="c1">//morse code for letter "S"</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+
+<span class="c1">//morse code for letter "M"</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">longDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">longDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">longDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">longDelay</span><span class="p">);</span>
+
+<span class="c1">//Morse code for "S"</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">shortDelay</span><span class="p">);</span>
+
+<span class="c1">//Pause before going back to the begining of the loop</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">longDelay</span><span class="p">);</span>
+<span class="p">}</span>
+
+</pre></div>
+
+<p><a name="loops"></a></p>
+
+<h3>
+<a name="user-content-loops" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/78.html#loops"><span class="octicon octicon-link"></span></a>Loops</h3>
+
+<p>Generally when coding you want to be as concise as possible. If there are any patterns or repitition in the code, like in the SMS example above, you can usually make it shorter. In the coming weeks we'll look at using functions to do this for us, but for now we will reduce our code using a <code>for()</code> loop.
+In order to create a <code>for()</code> loop you need to know four things. 
+1.Where to start the loop
+2. Where to finish the loop
+3. How to move through the loop
+4. What to do during each iteration, or each pass, through the loop.</p>
+
+<p>The syntax of a <code>for()</code> loop looks something like the following:</p>
+
+<div class="highlight highlight-C"><pre><span class="k">for</span><span class="p">(</span><span class="n">start</span> <span class="n">value</span><span class="p">;</span> <span class="n">end</span> <span class="n">value</span><span class="p">;</span> <span class="n">how</span> <span class="n">to</span> <span class="n">move</span> <span class="n">through</span> <span class="n">the</span> <span class="n">loop</span><span class="p">){</span>
+  <span class="n">what</span> <span class="n">to</span> <span class="k">do</span> <span class="n">each</span> <span class="n">time</span> <span class="n">the</span> <span class="n">loop</span> <span class="n">executes</span><span class="p">;</span>
+<span class="p">}</span>
+</pre></div>
+
+<p>The most common way to start a loop is by declaring a variable and initialising it to 0. For example <code>for(int counter = 0;</code>. To set the end condition we can either hard-code in a value or reference some other piece of code. If we want to run the loop to stop before the counter gets to three we can use <code>for(int counter = 0; counter &lt; 3;</code> Finally, we want to increase the value of the counter. To add two to our counter we would write <code>counter = counter + 2</code>. The <code>=</code> in most programming languages is for <em>assignment</em>. This means that the counter variable is set, or assigned, a value 2 greater than whatever value it is now. The most common increment is 1 and we could write <code>counter = counter + 1</code> but since this is so common there is a shorthand way of doing this which is <code>counter++</code>. The last thing we need to do is tell the loop what to do each time it executes. For this example we want to blink the LED. Putting it all together we get </p>
+
+<!--SMS with Loops -->
+<form method="get" action="http://goo.gl/MPrwYC">
+  <button type="submit">Download This Sketch</button>
+</form>
+
+<div class="highlight highlight-C"><pre><span class="c1">//S</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">counter</span><span class="o">++</span><span class="p">){</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//M</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">2</span><span class="p">;</span> <span class="n">counter</span><span class="o">++</span><span class="p">){</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">500</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//S</span>
+<span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">3</span><span class="p">;</span> <span class="n">counter</span><span class="o">++</span><span class="p">){</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="mi">200</span><span class="p">);</span>
+<span class="p">}</span>
+
+<span class="c1">//delay before starting all over again:</span>
+<span class="n">delay</span><span class="p">(</span><span class="mi">1000</span><span class="p">);</span>
+</pre></div>
+
+<p>So now we've gone from 40 lines of code to 26. We can (and will!) do better but that's not a bad start.</p>
+
+<h2>
+<a name="user-content--traffic-lights" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/78.html#-traffic-lights"><span class="octicon octicon-link"></span></a>
+<a name="traffic-lights"></a> Traffic Lights</h2>
+
+<p><a href="./index_files/01TrafficLights.png" target="_blank"><img src="./index_files/01TrafficLights.png" alt="Basic Traffic Lights Setup" style="max-width:100%;"></a></p>
+
+<p>Info to follow!</p>
+<!-- Traffic Lights Basic -->
+<form method="get" action="http://goo.gl/JGTWHb">
+  <button type="submit">Download This Sketch</button>
+</form>
+
+<div class="highlight highlight-C"><pre><span class="cm">/*</span>
+<span class="cm">Simple traffic lights example, where each LED lights up sequentially</span>
+
+<span class="cm">Code by Domhnall O'Hanlon. 2014.</span>
+
+<span class="cm">*/</span>
+
+<span class="c1">//giving the pins more suitable names</span>
+<span class="c1">//this will make the code easier to read, </span>
+<span class="c1">//and changes faster to carry out</span>
+<span class="kt">int</span> <span class="n">GreenLED</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">YellowLED</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">RedLED</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+
+<span class="c1">//same idea with as with the pins</span>
+<span class="c1">//changing the delay requires making one change rather than 3!</span>
+<span class="kt">int</span> <span class="n">multiplier</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">secsToWait</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">delayAmount</span> <span class="o">=</span> <span class="n">secsToWait</span> <span class="o">*</span> <span class="n">multiplier</span><span class="p">;</span>
+
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
+ <span class="n">pinMode</span><span class="p">(</span><span class="n">GreenLED</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+ <span class="n">pinMode</span><span class="p">(</span><span class="n">YellowLED</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+ <span class="n">pinMode</span><span class="p">(</span><span class="n">RedLED</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(){</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">RedLED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GreenLED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="n">delayAmount</span><span class="p">);</span>
+
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GreenLED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+  <span class="n">digitalWrite</span><span class="p">(</span><span class="n">YellowLED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+  <span class="n">delay</span><span class="p">(</span><span class="n">delayAmount</span><span class="p">);</span>
+
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">YellowLED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+ <span class="n">digitalWrite</span><span class="p">(</span><span class="n">RedLED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+ <span class="n">delay</span><span class="p">(</span><span class="n">delayAmount</span><span class="p">);</span> 
+<span class="p">}</span>
+
+</pre></div>
+
+<p><a name="arrays"></a></p>
+
+<h3>
+<a name="user-content-using-arrays" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/78.html#using-arrays"><span class="octicon octicon-link"></span></a>Using Arrays</h3>
+
+
+<!-- Traffic Lights with Array -->
+<form action="http://goo.gl/rbp0MT" method="get">
+  <button type="submit">Download this Sketch</button>
+</form>
+<div class="highlight highlight-C"><pre><span class="cm">/*</span>
+<span class="cm">Traffic lights example, lighting LEDs sequentially....over and over again!</span>
+
+<span class="cm">Code by Domhnall O'Hanlon. 2014.</span>
+
+<span class="cm">*/</span>
+
+<span class="c1">//create an array of LEDs, in this case the the numbers refer to pin numbers</span>
+<span class="c1">//but arrays can be used to store any information.</span>
+<span class="kt">int</span> <span class="n">LEDs</span><span class="p">[]</span> <span class="o">=</span> <span class="p">{</span><span class="mi">9</span><span class="p">,</span><span class="mi">10</span><span class="p">,</span><span class="mi">11</span><span class="p">};</span>
+
+<span class="c1">//defining the delay amount as a variable for ease of reuse &amp; reprogramming</span>
+<span class="kt">int</span> <span class="n">multiplier</span> <span class="o">=</span> <span class="mi">1000</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">secsToWait</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">delayAmount</span> <span class="o">=</span> <span class="n">secsToWait</span> <span class="o">*</span> <span class="n">multiplier</span><span class="p">;</span>
+
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
+  <span class="c1">//since all the pins are outputs we can declare this using a for loop.</span>
+  <span class="c1">//using this approach we can setup any amount of pins using just two lines of code</span>
+ <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">LEDs</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span> 
+  <span class="n">pinMode</span><span class="p">(</span><span class="n">LEDs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">OUTPUT</span><span class="p">);</span>
+ <span class="p">}</span>
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(){</span>
+
+  <span class="c1">//by rights this should be wrapped in an IF statement, but it still works without being overly complicated</span>
+  <span class="k">for</span><span class="p">(</span><span class="kt">int</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="n">i</span><span class="o">&lt;</span><span class="k">sizeof</span><span class="p">(</span><span class="n">LEDs</span><span class="p">);</span> <span class="n">i</span><span class="o">++</span><span class="p">){</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LEDs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">HIGH</span><span class="p">);</span>    <span class="c1">//1. starts with the ith element of the LEDs array and turns it on</span>
+    <span class="n">delay</span><span class="p">(</span><span class="n">delayAmount</span><span class="p">);</span>            <span class="c1">//2. leaves it on for a predetermined amount of time</span>
+    <span class="n">digitalWrite</span><span class="p">(</span><span class="n">LEDs</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">LOW</span><span class="p">);</span>    <span class="c1">//3. turns the light off</span>
+    <span class="p">}</span>                              <span class="c1">//4. until the loop as gone through all the LEDs it will go back to the beginning and do the same for the i+1th element.</span>
+<span class="p">}</span>                                  <span class="c1">//5. Once it finishes with the for() loop it goes back to the start of loop(), hence the slightly longer delay in going from green back to red.</span>
+
+</pre></div>
+
+<p><a name="user-content-serial-monitor"></a></p>
+
+<h3>
+<a name="user-content-serial-monitor" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/78.html#serial-monitor"><span class="octicon octicon-link"></span></a>Serial Monitor</h3>
+
+<p>If we want to read or write information with the computer we can use the serial monitor. In order make use of this functionality we must add the <code>Serial.begin(9600);</code> function to the setup block of code. This tells the Arduino to use the serial monitor, with a baud rate of 9600. Once we have done this we can use a wide range of functions, such as <code>Serial.read()</code> and <code>Serial.write()</code> throughout our code. In the following example we allow the user to select which light to activate, based on thier keyboard input.</p>
+
+
+<!-- Traffic Lights with Serial I/O -->
+<form action="http://goo.gl/9NpYEU" method="get">
+  <button type="submit">Download this Sketch</button>
+</form>
+<div class="highlight highlight-C"><pre><span class="cm">/*</span>
+<span class="cm">Traffic light code where the user selects which LED to illuminate based on key press</span>
+
+<span class="cm">Code by Domhnall O'Hanlon. 2014.</span>
+
+<span class="cm">*/</span>
+
+<span class="c1">//giving the pins more suitable names</span>
+<span class="c1">//this will make the code easier to read, </span>
+<span class="c1">//and changes faster to carry out</span>
+<span class="kt">int</span> <span class="n">GreenLED</span> <span class="o">=</span> <span class="mi">11</span><span class="p">;</span>  <span class="c1">//pin 1 = TX</span>
+<span class="kt">int</span> <span class="n">YellowLED</span> <span class="o">=</span> <span class="mi">10</span><span class="p">;</span> <span class="c1">//pin 0 = RX</span>
+<span class="kt">int</span> <span class="n">RedLED</span> <span class="o">=</span> <span class="mi">9</span><span class="p">;</span>
+
+<span class="c1">//same idea with as with the pins</span>
+<span class="c1">//changing the delay requires making one change rather than 3!</span>
+<span class="kt">int</span> <span class="n">multiplier</span> <span class="o">=</span> <span class="mi">100</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">interval</span> <span class="o">=</span> <span class="mi">2</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">delayAmount</span> <span class="o">=</span> <span class="n">interval</span> <span class="o">*</span> <span class="n">multiplier</span><span class="p">;</span>
+
+<span class="kt">int</span> <span class="n">keyPressed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
+<span class="kt">int</span> <span class="n">numBlinks</span> <span class="o">=</span> <span class="mi">3</span><span class="p">;</span>
+
+<span class="kt">void</span> <span class="nf">setup</span><span class="p">(){</span>
+ <span class="n">Serial</span><span class="p">.</span><span class="n">begin</span><span class="p">(</span><span class="mi">9600</span><span class="p">);</span> 
+
+ <span class="n">pinMode</span><span class="p">(</span><span class="n">GreenLED</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+ <span class="n">pinMode</span><span class="p">(</span><span class="n">YellowLED</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+ <span class="n">pinMode</span><span class="p">(</span><span class="n">RedLED</span><span class="p">,</span> <span class="n">OUTPUT</span><span class="p">);</span>
+
+<span class="n">Serial</span><span class="p">.</span><span class="n">println</span><span class="p">(</span><span class="s">"Please press </span><span class="se">\'</span><span class="s">r</span><span class="se">\'</span><span class="s"> for Red, </span><span class="se">\'</span><span class="s">y</span><span class="se">\'</span><span class="s"> for Yellow or </span><span class="se">\'</span><span class="s">g</span><span class="se">\'</span><span class="s"> for Green."</span><span class="p">);</span> 
+
+<span class="p">}</span>
+
+
+<span class="kt">void</span> <span class="nf">loop</span><span class="p">(){</span>
+  <span class="c1">//only executes this code if something is sent from the serial monitor</span>
+  <span class="k">if</span><span class="p">(</span><span class="n">Serial</span><span class="p">.</span><span class="n">available</span><span class="p">()</span> <span class="o">&gt;</span><span class="mi">0</span><span class="p">){</span>
+
+    <span class="c1">//sets the keyPressed var to whatever the user has typed on their keyboard</span>
+    <span class="n">keyPressed</span> <span class="o">=</span> <span class="n">Serial</span><span class="p">.</span><span class="n">read</span><span class="p">();</span> 
+
+    <span class="c1">//checks for either lower or upper case and sets the lights accordingly.</span>
+    <span class="c1">// || is used to denote the boolean operator, 'OR'</span>
+    <span class="c1">// &amp;&amp; is used for the 'AND' operator</span>
+    <span class="c1">// single quites are used for chars and double quotes are used for Strings</span>
+    <span class="c1">// NB: == denotes equivalence and = is used for assignment.</span>
+    <span class="k">if</span><span class="p">(</span><span class="n">keyPressed</span> <span class="o">==</span><span class="sc">'r'</span> <span class="o">||</span> <span class="n">keyPressed</span> <span class="o">==</span> <span class="sc">'R'</span><span class="p">){</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">keyPressed</span><span class="p">);</span> 
+     <span class="n">digitalWrite</span><span class="p">(</span><span class="n">RedLED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+     <span class="n">digitalWrite</span><span class="p">(</span><span class="n">YellowLED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+     <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GreenLED</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">keyPressed</span> <span class="o">==</span><span class="sc">'y'</span><span class="o">||</span><span class="n">keyPressed</span> <span class="o">==</span> <span class="sc">'Y'</span><span class="p">){</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">keyPressed</span><span class="p">);</span> 
+     <span class="n">digitalWrite</span><span class="p">(</span><span class="n">RedLED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+     <span class="n">digitalWrite</span><span class="p">(</span><span class="n">YellowLED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+     <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GreenLED</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="k">else</span> <span class="k">if</span><span class="p">(</span><span class="n">keyPressed</span> <span class="o">==</span><span class="sc">'g'</span> <span class="o">||</span> <span class="n">keyPressed</span> <span class="o">==</span> <span class="sc">'G'</span><span class="p">){</span>
+     <span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">keyPressed</span><span class="p">);</span> 
+     <span class="n">digitalWrite</span><span class="p">(</span><span class="n">RedLED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+     <span class="n">digitalWrite</span><span class="p">(</span><span class="n">YellowLED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+     <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GreenLED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+    <span class="p">}</span>
+
+    <span class="cm">/*</span>
+<span class="cm">    Again, not strictly necessary here, but it's always good practice use an else block to </span>
+<span class="cm">    look after all the other eventualities.</span>
+<span class="cm">    In this piece of code ALL the LEDs blink repeatedly if an invalid key is pressed.</span>
+<span class="cm">    numBlinks and delayAmount are global variables, defined at the very beginning of the code</span>
+<span class="cm">    */</span>
+    <span class="k">else</span><span class="p">{</span>
+     <span class="kt">int</span> <span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">;</span>
+     <span class="k">while</span> <span class="p">(</span><span class="n">i</span><span class="o">&lt;=</span><span class="n">numBlinks</span><span class="p">){</span>
+       <span class="n">digitalWrite</span><span class="p">(</span><span class="n">RedLED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>
+       <span class="n">digitalWrite</span><span class="p">(</span><span class="n">YellowLED</span><span class="p">,</span> <span class="n">HIGH</span><span class="p">);</span>     
+       <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GreenLED</span><span class="p">,</span><span class="n">HIGH</span><span class="p">);</span> 
+       <span class="n">delay</span><span class="p">(</span><span class="n">delayAmount</span><span class="p">);</span>
+       <span class="n">digitalWrite</span><span class="p">(</span><span class="n">RedLED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>
+       <span class="n">digitalWrite</span><span class="p">(</span><span class="n">YellowLED</span><span class="p">,</span> <span class="n">LOW</span><span class="p">);</span>     
+       <span class="n">digitalWrite</span><span class="p">(</span><span class="n">GreenLED</span><span class="p">,</span><span class="n">LOW</span><span class="p">);</span>
+       <span class="n">delay</span><span class="p">(</span><span class="n">delayAmount</span><span class="p">);</span>
+       <span class="c1">//Serial.print(i); //I was using this while debugging.</span>
+
+       <span class="n">i</span><span class="o">++</span><span class="p">;</span>
+     <span class="p">}</span>
+         <span class="n">Serial</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">keyPressed</span><span class="p">);</span>
+    <span class="p">}</span>
+  <span class="p">}</span>
+
+<span class="p">}</span>
+
+</pre></div>
+
+<p><a name="ldr"></a></p>
+
+<h2>
+<a name="user-content-light-dependent-resistor" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/78.html#light-dependent-resistor"><span class="octicon octicon-link"></span></a>Light Dependent Resistor</h2>
+
+<p><a href="./index_files/ldr.png" target="_blank"><img src="./index_files/ldr.png" alt="LDR Circuit" title="Reading in LDR values to Analog Pin 0" style="max-width:100%;"></a></p>
+
+<p><a name="ifs"></a></p>
+
+<h3>
+<a name="user-content-if-statements" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/78.html#if-statements"><span class="octicon octicon-link"></span></a>If Statements</h3>
+
+<p>Putting the LDR input values and the LED outputs together we can now get the lights to turn on or off based on the ambient light levels in the room.</p>
+
+<h2>
+<a name="user-content-thanks" class="anchor" href="file:///C:/Users/Domhnall/appdata/local/temp/78.html#thanks"><span class="octicon octicon-link"></span></a>Thanks!</h2>
+
+<p>This page is made possible thanks to <a href="https://pages.github.com/">Github Pages</a> <img class="emoji" title=":octocat:" alt=":octocat:" src="./index_files/octocat.png" height="20" width="20" align="absmiddle"></p><script>document.write('<script src="http://' + (location.host || 'localhost').split(':')[0] + ':35729/livereload.js?snipver=1"></' + 'script>')</script><script src="./index_files/livereload.js"></script></body></html>
