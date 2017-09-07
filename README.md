@@ -1,4 +1,4 @@
-Grayscale Jekyll theme
+README.md
 =========================
 
 [![Join the chat at https://gitter.im/therobotfoundry/Lobby](https://badges.gitter.im/therobotfoundry/Lobby.svg)](https://gitter.im/therobotfoundry/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
@@ -13,3 +13,5 @@ View this jekyll theme in action [here](https://jeromelachaud.github.io/grayscal
 
 =========
 For more details, read the [documentation](http://jekyllrb.com/)
+=======
+
