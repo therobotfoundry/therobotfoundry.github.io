@@ -1,6 +1,8 @@
 Grayscale Jekyll theme
 =========================
 
+[![Join the chat at https://gitter.im/therobotfoundry/Lobby](https://badges.gitter.im/therobotfoundry/Lobby.svg)](https://gitter.im/therobotfoundry/Lobby?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 Jekyll theme based on [Grayscale bootstrap theme ](http://ironsummitmedia.github.io/startbootstrap-grayscale/)
 
 ## Demo
